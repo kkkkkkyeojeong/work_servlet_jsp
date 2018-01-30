@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <!-- web.xml: Deployment Descripto (dd파일) -->
+  
+  <!-- p.501 -->
+  <servlet> <!-- 클래스와 서블릿 이름을 연결 -->
+  	<servlet-name>now</servlet-name> <!-- 만든 클래스를 이제 now라고 부른다. -->
+  	<servlet-class>example.NowServlet</servlet-class>	<!-- now라고 호칭붙인 클래스 실행 -->
+  </servlet>
+  
+  <servlet-mapping> <!-- 서블릿 이름과 URL 연결 -->
+  	<servlet-name>now</servlet-name>	<!-- 클라이언트에서 요청시 now라는 서블릿 찾음 -->
+  	<url-pattern>/now</url-pattern> <!-- 클라이언트에서 요청하는 단어 /now -->
+  </servlet-mapping>
+</web-app>
