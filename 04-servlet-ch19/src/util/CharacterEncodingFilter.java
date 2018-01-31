@@ -17,7 +17,8 @@ public class CharacterEncodingFilter implements Filter{
 	
 	@Override
 	public void init(FilterConfig config) throws ServletException {
-		encoding = config.getInitParameter("encoding");
+		encoding = config.getInitParameter("encoding");		// web.xml에 <init-param> 앨리먼트의 param-name이 encoding인 것의 값을 리턴 
+		// encoding값이 null이면 param-name이 encoding인 것이 없다는 뜻이므로, utf-8을 기본값으로 설정하는 부분 
 		if(encoding == null) {
 			encoding = "utf-8";
 		}
