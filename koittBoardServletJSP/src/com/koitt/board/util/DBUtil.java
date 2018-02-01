@@ -34,7 +34,7 @@ public class DBUtil {
 	
 	public Connection getConnection() throws ClassNotFoundException, SQLException {
 		String url = "jdbc:mysql://localhost:3306";
-		String dbName = "board";
+		String dbName = "koitt";
 		
 		// 1. 드라이버 로드
 		Class.forName("com.mysql.jdbc.Driver");
