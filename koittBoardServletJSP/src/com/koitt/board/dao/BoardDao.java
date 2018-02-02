@@ -107,6 +107,58 @@ public class BoardDao {
 		DBUtil.getInstance().close(conn);
 		
 		// 7. 생략
+	}
+	
+	// 글 삭제
+	public void delete(Integer no) throws ClassNotFoundException, SQLException {
+		
+		// 1. 데이터베이스 커넥션 객체 가져오기
+		Connection conn = DBUtil.getInstance().getConnection();
+		
+		// 2. SQL문 작성 
+		String sql = "DELETE FROM board WHERE no = ?";
+		
+		// 3. PreparedStatment 객체 생성 및 물음표 채우기
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, no);
+		
+		// 4. SQL문 실행
+		pstmt.executeUpdate();
+		
+		// 5. 생략
+		
+		// 6. 객체 해제
+		DBUtil.getInstance().close(pstmt);
+		DBUtil.getInstance().close(conn);
+		
+		// 7. 생략
+	}
+	
+	// 글 수정(파라미터 board 객체에 저장된 no값은 수정하고자 하는 글 번호)
+	public void update(Board board) throws ClassNotFoundException, SQLException {
+		
+		// 1. 데이터베이스 커넥션 객체 가져오기
+		Connection conn = DBUtil.getInstance().getConnection();
+		
+		// 2. SQL문 작성 
+		String sql = "UPDATE board SET title = ?, content = ? WHERE no = ?";
+		
+		// 3. PreparedStatment 객체 생성 및 물음표 채우기
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, board.getTitle());
+		pstmt.setString(2, board.getContent());
+		pstmt.setInt(3, board.getNo());
+		
+		// 4. SQL문 실행
+		pstmt.executeUpdate();
+		
+		// 5. 생략
+		
+		// 6. 객체 해제
+		DBUtil.getInstance().close(pstmt);
+		DBUtil.getInstance().close(conn);
+		
+		// 7. 생략
 		
 	}
 	
