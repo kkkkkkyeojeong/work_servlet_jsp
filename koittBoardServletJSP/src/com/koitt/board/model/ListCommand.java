@@ -11,6 +11,7 @@ import com.koitt.board.vo.Board;
 
 /*
  * 역할: 게시판 목록 출력
+ * Controller 패키지 제외하고는 다 model 이라 생각
  */
 public class ListCommand implements Command{
 
@@ -31,7 +32,6 @@ public class ListCommand implements Command{
 		req.setAttribute("list", list);
 		
 		return page;
-		
 	}
 
 	

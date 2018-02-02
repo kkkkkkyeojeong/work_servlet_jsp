@@ -24,7 +24,10 @@
 			<c:forEach var="board" items="${ requestScope.list }">
 				<tr>
 					<td>${ board.no }</td>
-					<td>${ board.title }</td>
+					<td><a href="BoardServlet?cmd=CMD_VIEW&no=${ board.no }">
+						${ board.title }
+						</a>
+					</td>
 					<td>${ board.writer }</td>
 					<td>${ board.regdate }</td>
 				</tr>
