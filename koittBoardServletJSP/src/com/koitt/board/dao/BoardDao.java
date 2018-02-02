@@ -80,6 +80,33 @@ public class BoardDao {
 		
 		// 7. 데이터베이스로부터 가져온 글 정보를 저장한 board객체 리턴
 		return board;
+	}
+	
+	// 글 작성
+	public void insert(Board board) throws ClassNotFoundException, SQLException {
+		// 1. 데이터베이스 커넥션 객체 가져오기
+		Connection conn = DBUtil.getInstance().getConnection();
+		
+		// 2. SQL문 작성 (최신글부터 가져오기 -> 내림차순 정렬)
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO board (title, content, writer, regdate) ");
+		sql.append("VALUES (?, ?, ?, CURDATE())");	// CURDATE() : MySQL에서 제공하는 함수
+		
+		// 3. PreparedStatment 객체 생성 및 물음표 채우기
+		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		pstmt.setString(1, board.getTitle());
+		pstmt.setString(2, board.getContent());
+		pstmt.setString(3, board.getWriter());
+		
+		// 4. SQL문 실행
+		pstmt.executeUpdate();		// 리턴 int형, 추가된 갯수가 리턴됨 
+		
+		// 5. 생략
+		// 6. 객체 해제 
+		DBUtil.getInstance().close(pstmt);
+		DBUtil.getInstance().close(conn);
+		
+		// 7. 생략
 		
 	}
 	

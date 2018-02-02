@@ -7,7 +7,8 @@
 </head>
 <body>
 	<h1>글 목록</h1>
-	
+	<!-- c:url value=http://localhost:8080/koittBoardServletJSP/board/insert-fomr.jsp -->
+	<a href="<c:url value='/board/insert-form.jsp' />">글쓰기</a>
 	<br>
 	
 	<table>
