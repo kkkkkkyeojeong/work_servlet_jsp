@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.koitt.book.model.Command;
+import com.koitt.book.model.DeleteCommand;
+import com.koitt.book.model.InsertCommand;
 import com.koitt.book.model.ListCommand;
+import com.koitt.book.model.ViewCommand;
 
 public class BookServlet extends HttpServlet{
 
@@ -44,6 +47,22 @@ public class BookServlet extends HttpServlet{
 				command = new ListCommand();
 				page = command.execute(req, resp);
 				break;
+			
+				case "CMD_INSERT":
+				command = new InsertCommand();
+				page = command.execute(req, resp);
+				break;
+				
+				case "CMD_VIEW":
+				command = new ViewCommand();
+				page = command.execute(req, resp);
+				break;
+				
+				case "CMD_DELETE":
+				command = new DeleteCommand();
+				page = command.execute(req, resp);
+				break;
+				
 			}
 			
 			RequestDispatcher rd = req.getRequestDispatcher(page);

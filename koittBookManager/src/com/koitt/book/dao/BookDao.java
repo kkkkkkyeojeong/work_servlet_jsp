@@ -45,6 +45,95 @@ public class BookDao {
 		
 	}
 	
+	public void insert(Book book) throws ClassNotFoundException, SQLException {
+		Connection conn = DBUtil.getInstance().getConnection();
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO book (title, author, publisher, price, description)");
+		sql.append("VALUES(?, ?, ?, ?, ?)");
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		pstmt.setString(1, book.getTitle());
+		pstmt.setString(2, book.getAuthor());
+		pstmt.setString(3, book.getPublisher());
+		pstmt.setInt(4, book.getPrice());
+		pstmt.setString(5, book.getDescription());
+		
+		pstmt.executeUpdate();
+		
+		DBUtil.getInstance().close(pstmt);
+		DBUtil.getInstance().close(conn);
+		
+	}
+	
+	public Book select(Integer isbn) throws ClassNotFoundException, SQLException {
+		
+		Connection conn = DBUtil.getInstance().getConnection();
+		
+		String sql = "SELECT * FROM book WHERE isbn = ?";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, isbn);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		rs.next();
+		
+		Book book = new Book();
+		
+		book.setAuthor(rs.getString("author"));
+		book.setDescription(rs.getString("description"));
+		book.setIsbn(rs.getInt("isbn"));
+		book.setPrice(rs.getInt("price"));
+		book.setPublisher(rs.getString("publisher"));
+		book.setTitle(rs.getString("title"));
+		
+		DBUtil.getInstance().close(rs);
+		DBUtil.getInstance().close(pstmt);
+		DBUtil.getInstance().close(conn);
+		
+		return book;
+		
+	}
+	
+	public void delete(Integer isbn) throws ClassNotFoundException, SQLException {
+		
+		Connection conn = DBUtil.getInstance().getConnection();
+		
+		String sql = "DELETE FROM book WHERE isbn = ?";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, isbn);
+		
+		pstmt.executeUpdate();
+		
+		DBUtil.getInstance().close(pstmt);
+		DBUtil.getInstance().close(conn);
+	}
+	
+	
 	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

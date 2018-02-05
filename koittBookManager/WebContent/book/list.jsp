@@ -25,7 +25,7 @@
 			<c:forEach var="book" items="${ requestScope.list }">
 				<tr>
 					<td>${ book.isbn }</td>
-					<td><a href="BookServlet?cmd=CMD_VIEW&isbn">
+					<td><a href="BookServlet?cmd=CMD_VIEW&isbn=${ book.isbn }">
 						${ book.title }
 						</a>
 					</td>
