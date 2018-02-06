@@ -9,3 +9,12 @@ CREATE TABLE users (
 DROP TABLE users; 
 
 show tables;
+
+INSERT INTO users (email, password, name) 
+	VALUES ('aaa@naver.com', '1234', '홍길동');
+INSERT INTO users (email, password, name) 
+	VALUES ('bbb@naver.com', '5678', '김철수');
+INSERT INTO users (email, password, name) 
+	VALUES ('ccc@naver.com', '0011', '박영희');
+	
+select * from users;

@@ -16,7 +16,7 @@ public class UsersDao {
 		Connection conn = DBUtil.getInstance().getConnection();
 		
 		// 최근 가입순으로 정렬 
-		String sql = "SELECT * FROM users ORDER BY DESC";
+		String sql = "SELECT * FROM users ORDER BY no DESC";
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
@@ -39,8 +39,44 @@ public class UsersDao {
 		DBUtil.getInstance().close(conn);
 		
 		return list;
-	
 		
 	}
+	
+	public void insert(Users users) throws ClassNotFoundException, SQLException {
+		Connection conn = DBUtil.getInstance().getConnection();
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO users (email, password, name) ");
+		sql.append("VALUES (?, ?, ?)");
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		
+		pstmt.setString(1, users.getEmail());
+		pstmt.setString(2, users.getPassword());
+		pstmt.setString(3, users.getName());
+		pstmt.executeUpdate();
+		
+		DBUtil.getInstance().close(pstmt);
+		DBUtil.getInstance().close(conn);
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

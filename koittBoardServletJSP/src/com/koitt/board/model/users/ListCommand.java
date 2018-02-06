@@ -13,8 +13,7 @@ import com.koitt.board.vo.Users;
 public class ListCommand implements Command{
 
 	@Override
-	public String execute(HttpServletRequest req, HttpServletResponse resp)
-			throws ClassNotFoundException, SQLException {
+	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ClassNotFoundException, SQLException {
 		
 		String page = "./users/list.jsp";
 		
