@@ -60,10 +60,60 @@ public class UsersDao {
 		DBUtil.getInstance().close(pstmt);
 		DBUtil.getInstance().close(conn);
 		
+
+	}
+	
+	public Users select(String email) throws ClassNotFoundException, SQLException {
 		
+		Connection conn = DBUtil.getInstance().getConnection();
+		
+		String sql = "SELECT * FROM users WHERE email = ?";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, email);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		rs.next();
+		
+		Users users = new Users();
+		
+		users.setEmail(rs.getString("email"));
+		users.setName(rs.getString("name"));
+		users.setNo(rs.getInt("no"));
+		//users.setPassword(rs.getString("password"));	// 사용자 정보를 표시할 때 민감한 정보는 보내지 않는다.
+		
+		DBUtil.getInstance().close(rs);
+		DBUtil.getInstance().close(pstmt);
+		DBUtil.getInstance().close(conn);
+		
+		return users;
 		
 	}
 	
+	// 실제 저장된 원본 비밀번호를 외부에 노출시키지 않기 위해 따로 SQL문을 작성하여 실행
+	public boolean matches(String email, String password) throws ClassNotFoundException, SQLException {
+		
+		Connection conn = DBUtil.getInstance().getConnection();
+		
+		String sql = "SELECT no FROM users WHERE email = ? AND password = ?";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, email);
+		pstmt.setString(2, password);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		boolean isMatches = rs.next();
+				
+		DBUtil.getInstance().close(rs);
+		DBUtil.getInstance().close(pstmt);
+		DBUtil.getInstance().close(conn);
+		
+		return isMatches;	
+		
+
+	}
 	
 	
 	
