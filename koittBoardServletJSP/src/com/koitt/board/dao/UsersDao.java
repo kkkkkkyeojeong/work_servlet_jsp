@@ -9,10 +9,11 @@ import java.util.List;
 
 import com.koitt.board.util.DBUtil;
 import com.koitt.board.vo.Users;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 public class UsersDao {
 	
-	public List<Users> selectAll() throws ClassNotFoundException, SQLException {
+	public List<Users> selectAll() throws ClassNotFoundException, SQLException, MySQLIntegrityConstraintViolationException {
 		Connection conn = DBUtil.getInstance().getConnection();
 		
 		// 최근 가입순으로 정렬 

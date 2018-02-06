@@ -22,6 +22,10 @@
 	<c:if test="${ param.error == 'password' }">
 	<div style="color: #FF0000">비밀번호를 다시 확인하세요.</div>
 	</c:if>
+	
+	<c:if test="${ param.error == 'email' }">
+	<div style="color: #FF0000">중복된 이메일입니다.</div>
+	</c:if>
 </body>
 </html>
 
