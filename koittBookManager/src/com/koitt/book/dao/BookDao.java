@@ -111,6 +111,24 @@ public class BookDao {
 		DBUtil.getInstance().close(conn);
 	}
 	
+	public void update(Book book) throws ClassNotFoundException, SQLException {
+		
+		Connection conn = DBUtil.getInstance().getConnection();
+		
+		String sql = "UPDATE book SET description = ? WHERE isbn = ?";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, book.getDescription());
+		pstmt.setInt(2, book.getIsbn());
+		
+		pstmt.executeUpdate();
+		
+		DBUtil.getInstance().close(pstmt);
+		DBUtil.getInstance().close(conn);
+		
+	}
+	
 	
 	
 
